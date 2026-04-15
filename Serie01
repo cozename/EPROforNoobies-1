@@ -1,0 +1,41 @@
+Serie 1
+Diese Serie wird gemeinsam mit den TutorInnen 
+in den Übungen bearbeitet. Es wird diese Woche 
+auch keinen benoteten Kurztest geben.
+
+Aufgabe 1:
+Installieren Sie Python und eine Entwicklungsumgebung
+ Ihrer Wahl (empfohlen: VSCode) auf Ihrem Computer. 
+ Erstellen Sie einen Ordner EPROG_2026 und darin einen Unterordner UE1. 
+ Erstellen Sie eine virtuelle Umgebung für Python in diesem Ordner.
+
+Aufgabe 2:
+
+Erstellen Sie eine Datei hello.py in Ihrem UE1-Ordner. 
+Schreiben Sie ein Programm, das Hello, World! I am <Name> 
+and I study <Fachrichtung> at TU Wien. auf der Konsole ausgibt. 
+
+Tippen Sie dazu
+
+print("Hello, World!")
+print("I am <Name> and I study <Fachrichtung> at TU Wien.")
+in diese Datei und speichern Sie diese. Ersetzen Sie dabei <Name> 
+and <Fachrichtung> durch Ihren Namen und Ihre Fachrichtung. 
+Führen Sie das Programm in der Konsole aus, indem Sie in den Ordner 
+UE1 wechseln und python hello.py eingeben.
+
+Aufgabe 3:
+
+Was passiert, wenn Sie die Anführungszeichen weglassen und versuchen, 
+das Programm auszuführen? 
+Experimentieren Sie außerdem mit Zeilenumbrüchen \n.
+
+Aufgabe 4:
+Erstellen Sie eine Datei grade.py, welche die 
+Variablen final_exam, weekly_exam und exercise enthält. 
+Nehmen Sie an, in diesen Variablen sind die Noten 0–100 (in Prozent) 
+für die Abschlussprüfung, die wöchentlichen Tests und die Übungen gespeichert. 
+Berechnen Sie die Gesamtnote laut der Formel auf TUWEL, also
+
+grade = ...
+print("Your final grade is:", grade)
