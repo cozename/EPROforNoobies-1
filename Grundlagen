@@ -1,0 +1,267 @@
+# Grundlagen: Einführung in Python 3
+**Dozent:** Michael Feischl
+
+---
+
+## 1. Was ist Python?
+Python wurde von Guido van Rossum am Centrum Wiskunde & Informatica (CWI) in den Niederlanden entwickelt (erste Version 1991). 
+Der Name bezieht sich auf die englische Komikergruppe *Monty Python*.
+
+### Warum genau Python?
+Im Grunde ist es egal, welche Programmiersprache man zuerst lernt, da die grundlegenden Konzepte überall ähnlich sind. Python ist jedoch:
+- Sehr flexibel und aktiv in der Weiterentwicklung.
+- Eine **High-Level-Sprache**, die oft genutzt wird, um komplexen *Low-Level-Code* (z.B. C, C++) einfacher bedienbar zu machen.
+
+**Vorteile:**
+- Einfacher Einstieg, Code ist leicht und verständlich lesbar wie fließendes Englisch.
+- Riesige Auswahl an Bibliotheken/Erweiterungen für nahezu jedes Themengebiet (große Community).
+- Kostenlos, quelloffen und portabel (plattformunabhängig für Windows, Mac, Linux).
+
+**Nachteile:**
+- Etwas langsamer als C oder C++ bei rechenintensiven Aufgaben. *(Dies wird durch optimierte Bibliotheken jedoch oft ausgeglichen).*
+- Python erleichtert das Programmieren auf Kosten von etwas Performance.
+
+> **Motto von Python:** *"Computers are cheap, programmers are expensive"*
+
+### Programmieren für MathematikerInnen
+Dies ist **kein** klassischer Informatik-Programmierkurs! Der Fokus liegt auf:
+- Wenig Softwaredesign
+- Wenig abstraktes Debugging
+- Eher wenige, dafür gezielte Algorithmen
+
+### Literatur & Ressourcen
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) von Al Sweigart (Kostenlos online verfügbar)
+- **Python 3** von Johannes Ernesti und Peter Kaiser (Sehr umfassend)
+- [Offizielle Python Dokumentation](https://docs.python.org/3/)
+- [StackOverflow](https://stackoverflow.com/) - Vorbildliches Programmier-Forum für Fehlersuche
+- [Python Tutor](https://pythontutor.com/) - Praktisches Tool zur schrittweisen Visualisierung von Python-Code
+
+---
+
+## 2. Was ist ein Programm?
+> Ein Computerprogramm ist eine Folge von Anweisungen, die den Regeln einer Programmiersprache genügen, um auf einem Computer eine bestimmte Funktionalität oder Problemstellung zu lösen (Wikipedia).
+
+Anweisungen bestehen im Wesentlichen aus **Definitionen** und **Instruktionen**:
+- **Definition:** z. B. `x = 3` oder eine mathematische Funktion $f(x) = x^2$
+- **Instruktion:** "Tue etwas!", z. B. berechne $f(x)$, suche ein Wort im Text, berechne ein Integral.
+
+*Wichtig:* Python ist eine **interpretierte** (nicht kompilierte) Sprache. Das bedeutet vereinfacht gesagt, dass der Code erst zur Laufzeit Zeile für Zeile durch einen Interpreter in Maschinencode (Computercode) übersetzt wird. Bei kompilierten Sprachen (C, Java) passiert dies schon vorher im Ganzen.
+
+---
+
+## 3. Installation & Entwicklungsumgebung
+
+### Python 3 installieren
+Damit dein Gerät Python versteht, muss es als Programm installiert sein:
+- **Windows / macOS:** Den regulären Installer von [python.org/downloads](https://www.python.org/downloads/) laden. 
+  **Wichtig bei Windows:** Setze beim Installieren unbedingt das Häkchen bei *"Add Python 3.x to PATH"*!
+- **Linux:** Meistens bereits vorinstalliert. Überprüfen im Terminal mit `python3 --version`. (Lokal installieren via `sudo apt-get install python3`)
+
+### Eine Entwicklungsumgebung (IDE) einrichten
+Zum reinen Programmieren reicht das normale Windows-Notepad. Aber spezielle Editoren (IDEs) bieten geniale Hilfen wie **Syntaxhervorhebung (Farben)**, **Autovervollständigung** und **Fehlererkennung**.
+Wir nutzen und empfehlen in dieser Vorlesung **Visual Studio Code (VSCode)**:
+1. Den Installer unter [code.visualstudio.com](https://code.visualstudio.com/download) laden.
+2. Nach dem Öffnen von VSCode links im Menü unter "Extensions" die Erweiterung **Python** (von Microsoft) installieren.
+3. Arbeitsweise: VSCode arbeitet in Ordnern. Erstelle für jede Übung einen eigenen Ordner und öffne diesen dann in VSCode mit `File -> Open Folder...`.
+
+### Virtuelle Umgebungen (venv)
+Gute Praxis: Lege für jedes deiner Projekte eine eigene **virtuelle Umgebung** an. So verhinderst du, dass global installierte Pakete versehentlich dein neues Projekt stören.
+1. Drücke in VSCode `Strg+Shift+P` $\rightarrow$ tippe `Python: Create Environment` $\rightarrow$ wähle `venv`.
+2. Dadurch wird ein versteckter Ordner `.venv` im Projektverzeichnis erstellt.
+3. VSCode sollte die Umgebung für neue `.py` Dateien nun automatisch erkennen und aktivieren.
+
+---
+
+## 4. Grundlegende Befehle in Python
+
+### Textausgabe mit `print`
+Um Text im Ausgabefenster anzeigen zu lassen, nutzt man den Befehl `print()`. Texte müssen dabei stets in Anführungszeichen stehen.
+
+```python
+print("Hello World!")
+print("Das", "ist", "1", "Test")
+print("Das", "ist", "1", "Test", sep="-")
+```
+**Ausgabe:**
+```text
+Hello World!
+Das ist 1 Test
+Das-ist-1-Test
+```
+*Tipp:* Mit dem Schlüsselwort `end` kann man definieren, womit die Ausgabe-Zeile enden soll. Standardmäßig ist das ein versteckter Zeilenumbruch. Möchte man das verhindern:
+```python
+print("Hello World", end=" --- ")
+print("Das ist 1 Test")
+```
+**Ausgabe:** `Hello World --- Das ist 1 Test`
+
+### Arithmetische Operationen (Rechnen)
+Python kennt alle gängigen Rechenregeln (wie z. B. Punkt-vor-Strich).
+- `+`, `-`, `*`, `/`
+- `**` : Potenzieren (Beispiel: `4**0.5` ergibt Wurzel aus 4, also `2.0`)
+- `//` : Ganzzahlige Division (Beispiel: `13//2` ergibt `6`, der Rest entfällt)
+- `%` : Modulo / Divisionsrest (Beispiel: `13%2` ergibt `1`)
+- `abs()` : Absolutbetrag (Beispiel: `abs(-5)` ergibt `5`)
+
+```python
+print("13 // 2 ist:", 13//2)
+print("Pi etwa", 3.14) # Achtung: im Englischen immer Dezimalpunkt!
+```
+
+---
+
+## 5. Variablen in Python
+Im Unterschied zur Mathematik, wo Variablen beliebig offen sein können, haben Python-Variablen immer einen **konkreten Wert**. Man muss nicht vorab definieren, ob es Zahlen oder Texte sind, Python erkennt den Datentyp automatisch (Dynamic Typing). Der Wert einer Variable kann zudem beliebig oft geändert (überschrieben) werden.
+
+```python
+x = 3.14
+print("Pi ist ungefähr", x)
+x = 3       # Wert wird einfach überschrieben
+y = 2*x + 5 # Variable verwenden zum weiterrechnen
+```
+
+**Regeln für Variablennamen:**
+- Nur Buchstaben, Zahlen und Unterstriche (z.B. `first_name`).
+- Darf **nicht** mit einer Zahl beginnen!
+- Geschützte Python-Befehle (wie `if`, `def`, `True`, `for` ...) sind logischerweise verboten.
+- *Best-Practice Konvention:* Die sog. Snake-Case Schreibweise nutzen. Alles klein schreiben und Leerzeichen mit einem Unterstrich `_` auffüllen (z. B. `integral_value`). Benenne Variablen so, dass du in drei Monaten noch weißt, was sie bedeuten!
+
+**Werteingabe via Bildschirmtastektur:**
+```python
+age = input("Enter your age: ") 
+# ACHTUNG: input() liest alle Eingaben vorerst ausnahmslos als Text (String)!
+```
+
+---
+
+## 6. Schöne Ausgabe: Werte sicher verknüpfen (f-Strings)
+Wenn man Variablen in eine Textausgabe mischen möchte, nutzt man heutzutage am besten f-Strings. Sie sind absolut leserlich und extrem mächtig. Dazu schreibt man ein `f` vor das Anführungszeichen und fügt Variablen oder Rechnungen einfach in `{}` Klammern ein.
+
+```python
+x = 2/3
+pi = 3.14159
+
+# Die .2f Formatierung zwingt den PC, genau 2 Kommastellen (Float) anzuzeigen
+print(f"2/3 ist auf zwei Stellen gerundet: {x:.2f}") 
+```
+**Ausgabe:** `2/3 ist auf zwei Stellen gerundet: 0.67`
+
+Möchte man spezielle Zeichen wie Anführungszeichen ausgeben lassen, hilft ein Backslash `\`:
+```python
+print(f"Das ist ein wirklich schöner \"Test\".")
+print(f"Ich fühle mich \\o/")
+```
+
+---
+
+## 7. Die Datentypen in Python
+Da im PC auf unterster Ebene nur Einsen und Nullen existieren, muss Python den Datentyp kennen. Nutze den Befehl `type()`, um Herauszufinden, um welchen Typ es sich handelt.
+
+| Typ   | Beschreibung |
+|-------|--------------|
+| **`int`** | Ganze Zahlen (Integer, absolut exakt). Bsp: `10` |
+| **`float`**| Komma-/Gleitkommazahlen (hier treten minimale Rundungsfehler auf!). Bsp: `3.14` |
+| **`complex`**| Komplexe Zahlen. Das Symbol `j` dient dabei als imaginäre Einheit $i$. Bsp: `3 + 4j` |
+| **`str`** | Zeichenkette/Texte (String). Erkennt man an den Anführungzeichen. Bsp: `"Peter"` |
+| **`None`** | Spezieller Datentyp für eine leere (fehlende) Zuweisung. Nicht verwechseln mit einer `0`! |
+
+*Grundregel beim Kombinieren:* Bei Rechnungen mit unterschiedlichen Datentypen bleibt das Ergebnis stets im "mächtigeren" Typ erhalten (z. B. `int` + `float` ergibt zusammen einen `float`).
+
+### Manuelles Umwandeln (Type-Casting)
+Will man von einem in den anderen Typ übersetzen, ruft man diesen als Befehl auf:
+```python
+x = 3.14
+y = int(x)        # y wird knallhart zu 3 (Rest entfällt)
+
+text = "3.14" 
+zahl = float(text)# Aus dem Text wird jetzt erst eine Rechenzahl
+```
+*Besonders wichtig beim Eingabebefehl `input()`:*
+```python
+eingabe = input("Gib eine Zahl ein: ") # Ergibt Text
+zahl = float(eingabe)                  # Erst hiernach können wir effektiv damit rechnen!
+```
+
+### Datentypen auf Herz und Nieren testen (`isinstance`)
+```python
+isinstance(3.14, float) # True
+isinstance(3, float)    # False! Begründung: 3 ist ein pure int. Lediglich 3.0 wäre float.
+```
+
+---
+
+## 8. Nützliche Text-Zubehör-Funktionen (String Methoden)
+
+Man kann Texte in Python wie Objekte anfassen und bearbeiten:
+```python
+name = "Peter Parker"
+
+print(name.lower())      # "peter parker"
+print(name.upper())      # "PETER PARKER"
+print(name.swapcase())   # "pETER pARKER"
+
+print("Das ist ein Test".split()) # Trennt nach Leerzeichen! Ergibt eine Liste: ['Das', 'ist', 'ein', 'Test']
+print("Heul leise".replace("e", "a")) # Ersetzt e durch a: "Haul laisa"
+```
+
+---
+
+## 9. Der Zuweisungsoperator `=`
+Das Gleichheits-Zeichen `=` ist in Python eine reine, blinde **Zuweisung** des Inhalts und _niemals_ ein logischer Vergleich. Die Leserichtung ist immmer stur von der rechten zur linken Seite.
+
+```python
+x = 1       # Die 1 wird ans x angeklebt
+y = x + 2   # Erst wird x + 2 gerechnet und das Resultat ans y geschickt
+x += 2      # Absolute Kurzform für "Selbstzuweisung": x = x + 2
+x *= 3      # x = x * 3
+```
+
+**Variablen blitzschnell tauschen:**
+Statt Variablen wie bei Wassergläsern in ungemütlichen Zwischengläsern auszutauschen, glänzt Python mit der Mehrfachzuweisung:
+```python
+x, y = 1, 2
+x, y = y, x    # Schwupps: x ist nun 2, y ist 1 !
+```
+
+*(Hinweis zu Zeilenumbrüchen im Editor)*:
+Wenn eine Zeile zu lange wird, bricht Python den Code nicht willkürlich ab, sondern sucht im Idealfall nach passenden Klammern am Ende. Ist keine Klammer vorhanden, signalisierte man früher den Umbruch elegant mit einem Backslash `\`. 
+
+---
+
+## 10. Fehlerarten – wenn alles explodiert
+Fehler treten permanent auf. Grundlegend unterscheidet man zwei Kategorien:
+
+1. **Syntaxfehler (Rechtschreib-/Grammatikfehler des Programmierers)**
+   Dem Python-Interpreter fällt bereits im Vorfeld der Ausführung auf, dass die Schreibregeln nicht passen (z. B. die Einrückung ist falsch, Klammer nicht geschlossen, fremdes Wort erfunden). Das Programm beginnt gar nicht erst zu starten.
+   *`SyntaxError: unexpected EOF while parsing` (Er hat vergeblich auf eine geschlossene Klammer gewartet)*
+
+2. **Laufzeitfehler**
+   Grammatikalisch ist der Text sauber. Wir starten das Programm. Irgendwann passiert jedoch etwas im Code-Verlauf, das mathematisch/technisch nicht machbar ist (z. B. es wird auf unerklärliche Weise durch 0 geteilt, oder ein falscher Datentyp wurde geliefert). Das führt zur fatalen Fehlermeldung und das Programm stürzt in dem Moment einfach knallhart ab.
+   *`ZeroDivisionError: division by zero` oder `NameError: name is not defined`*
+
+---
+
+## 11. Module: Das Werkzeug-Arsenal
+Python hat dutzende riesige Werkzeugkästen bereits vorgefertigt an Bord. Diese Kästen (Module) müssen bei Bedarf einzeln aktiviert und in das Skript per `import` eingebunden werden.
+
+```python
+import math                  # Lädt das riesige math Modul komplett rein
+from math import sqrt, pi    # Lädt bewusst nur exakt die 2 Werkzeuge rein 
+import random as rnd         # Lädt Modul und gibt ihm einen fauleren Rufnamen ('rnd' statt 'random')
+
+print(sqrt(16))              # 4.0
+print(rnd.random())          # Zufallszahl zwischen ganz exakt 0.0 und 1.0 (ohne die 1.0)
+```
+*Tipp:* Ladet bei großen Werkzeugkoffern mit `from x import y` nur die Werkzeuge, die ihr explizit benötigt, andernfalls wird oft unnötig zu viel Ballast und Ressourcen geladen.
+
+**Beliebte Vertreter des `math` Moduls:**
+- `math.sqrt(x)`: Exakte Quadratwurzel berechnen
+- `math.exp(x)`: Exponentialfunktion berechnen ($e^x$)
+- `math.log(x)`: Den natürlichen Logarithmus auflösen
+- `math.sin(x)`, `math.cos(x)`, `math.tan(x)`: Trigonometrische Funktionen (Erwartet Wert im Bogenmaß!)
+- `math.pi`, `math.e`: Kreiszahl $\pi$ und konstante Eulersche Zahl
+
+**Beliebte Vertreter des `random` (Zufall) Moduls:**
+- `random.random()`: Zufällige Zahl wie beim Prozentsatz-Zufall [0.0, 1.0)
+- `random.randint(a, b)`: Eine knallharte ganzzahlige Nummer zwischen `a` und `b` (inklusiv `a` und `b`).
+- `random.choice(liste)`: Mischt wild und wirft dir einen zufälligen Treffer aus der reingesteckten Liste entgegen.
