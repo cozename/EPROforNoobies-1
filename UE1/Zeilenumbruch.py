@@ -1,0 +1,1 @@
+print("line1\nline 2")  # hier experimentiere ich mit \n
